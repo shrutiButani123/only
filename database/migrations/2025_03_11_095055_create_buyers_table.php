@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('buyers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->foreignId('state_id')->constrained('states')->onDelete('cascade');
-            $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
-            $table->string('role')->default('user');
-            $table->rememberToken();
+            $table->text('address');
+            $table->string('mobile_no');
+            $table->string('buyer_type');
+            $table->string('cut_quality');
+            $table->string('color');
+            $table->string('clarity');
+            $table->decimal('carat_weight', 8, 2);
+            $table->decimal('amount', 10, 2);
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('buyers');
     }
 };
