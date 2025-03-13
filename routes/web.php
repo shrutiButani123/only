@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BuyerController;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
 });
 
+//Buyers
 Route::get('/buyers', [BuyerController::class, 'index'])->name('buyers.index'); // List all buyers
 Route::get('/buyers/create', [BuyerController::class, 'create'])->name('buyers.create'); // Show create form
 Route::post('/buyers', [BuyerController::class, 'store'])->name('buyers.store'); // Store buyer data
@@ -45,3 +47,7 @@ Route::put('/buyers/{id}', [BuyerController::class, 'update'])->name('buyers.upd
 Route::delete('/buyers/{id}', [BuyerController::class, 'destroy'])->name('buyers.destroy'); // Delete buyer
 
 Route::get('/buyers/export', [BuyerController::class, 'export'])->name('buyers.export');
+
+//invoice
+Route::get('/invoices/create', [InvoiceController::class, 'index'])->name('invoices.create');
+Route::post('/invoices/store', [InvoiceController::class, 'store'])->name('invoices.store');
